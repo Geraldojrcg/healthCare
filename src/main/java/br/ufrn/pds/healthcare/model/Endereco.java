@@ -1,5 +1,7 @@
 package br.ufrn.pds.healthcare.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Entity;
 
 @Entity
@@ -9,6 +11,8 @@ public class Endereco extends EntidadeAbstrata {
     private String bairro;
     private String rua;
     private int numero;
+
+    @Length(min = 8, max = 8)
     private String cep;
 
     public String getEstado() {

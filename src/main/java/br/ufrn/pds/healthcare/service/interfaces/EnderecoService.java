@@ -6,9 +6,9 @@ import br.ufrn.pds.healthcare.model.Pessoa;
 import java.util.List;
 
 public interface EnderecoService {
-    void salvar(Endereco pessoa);
+    Endereco salvar(Endereco endereco);
 
-    void atualizar(Endereco pessoa);
+    void atualizar(Endereco endereco);
 
     void deletar(Long id);
 

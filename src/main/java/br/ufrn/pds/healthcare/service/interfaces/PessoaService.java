@@ -5,7 +5,7 @@ import br.ufrn.pds.healthcare.model.Pessoa;
 import java.util.List;
 
 public interface PessoaService {
-    void salvar(Pessoa pessoa);
+    Pessoa salvar(Pessoa pessoa);
 
     void atualizar(Pessoa pessoa);
 

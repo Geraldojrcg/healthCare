@@ -5,9 +5,9 @@ import br.ufrn.pds.healthcare.model.Usuario;
 import java.util.List;
 
 public interface UsuarioService {
-    void salvar(Usuario pessoa);
+    Usuario salvar(Usuario usuario);
 
-    void atualizar(Usuario pessoa);
+    void atualizar(Usuario usuario);
 
     void deletar(Long id);
 

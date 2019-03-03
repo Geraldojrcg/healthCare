@@ -11,6 +11,7 @@
         <main>
             <div class="container">
                 <form th:object="${pessoa}" th:action="@{/pessoa/{id}/editar(id = ${pessoa.id})}" method="POST">
+                    <input th:field="*{endereco.id}" type="hidden">
                     <div class="form-group">
                         <label for="cpf">CPF</label>
                         <input th:field="*{cpf}" type="text" class="form-control" id="cpf" placeholder="12345678900"
@@ -75,6 +76,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a th:href="@{/pessoa}" class="btn btn-warning">Voltar</a>
                 </form>
             </div>
         </main>

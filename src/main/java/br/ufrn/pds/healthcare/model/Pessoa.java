@@ -1,5 +1,7 @@
 package br.ufrn.pds.healthcare.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,6 +28,7 @@ public class Pessoa extends EntidadeAbstrata {
     private LocalDate dataDeNascimento;
 
     @OneToOne
+    @Cascade(CascadeType.ALL)
     private Endereco endereco;
 
     public String getCpf() {

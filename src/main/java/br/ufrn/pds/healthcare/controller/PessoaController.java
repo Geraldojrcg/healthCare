@@ -41,7 +41,10 @@ public class PessoaController {
     }
 
     @PostMapping("pessoa")
-    public String salvar(@Valid Pessoa pessoa) {
+    public String salvar(@Valid Pessoa pessoa, BindingResult result) {
+        if(result.hasErrors()) {
+            return "pessoa/cadastrar";
+        }
         pessoaService.salvar(pessoa);
         return "redirect:/pessoa";
     }
@@ -52,6 +55,12 @@ public class PessoaController {
             return "pessoa/editar";
         }
         pessoaService.atualizar(pessoa);
+        return "redirect:/pessoa";
+    }
+
+    @GetMapping("/pessoa/{id}/deletar")
+    public String deletar(@PathVariable Long id) {
+        pessoaService.deletar(id);
         return "redirect:/pessoa";
     }
 }

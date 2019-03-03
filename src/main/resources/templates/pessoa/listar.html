@@ -33,7 +33,7 @@
                             <th th:text="${pessoa.id}" scope="row"></th>
                             <td th:text="${pessoa.cpf}"></td>
                             <td th:text="${pessoa.nome}"></td>
-                            <td th:text="${pessoa.dataDeNascimento}"></td>
+                            <td th:text="${#temporals.format(pessoa.dataDeNascimento, 'dd/MM/yyyy')}"></td>
                             <td th:text="${pessoa.sexo}"></td>
                             <td th:text="${pessoa.telefone}"></td>
                             <td th:text="${pessoa.endereco.estado}"></td>
@@ -44,10 +44,12 @@
                             <td th:text="${pessoa.endereco.numero}"></td>
                             <td>
                                 <a th:href="@{pessoa/{id}/editar(id = ${pessoa.id})}">Editar</a>
+                                <a th:href="@{pessoa/{id}/deletar(id = ${pessoa.id})}">Deletar</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <a th:href="@{/pessoa/cadastrar}" class="btn btn-primary">Cadastrar</a>
             </div>
         </main>
         <div th:replace="fragments/footer::footer"></div>

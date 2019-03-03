@@ -31,6 +31,8 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public void atualizar(Pessoa pessoa) {
+        pessoa.getEndereco().setId(buscarPorId(pessoa.getId()).getEndereco().getId());
+        enderecoService.atualizar(pessoa.getEndereco());
         pessoaRepository.save(pessoa);
     }
 

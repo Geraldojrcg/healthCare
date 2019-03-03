@@ -25,6 +25,7 @@
                             <th scope="col">Rua</th>
                             <th scope="col">CEP</th>
                             <th scope="col">Número</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,6 +42,9 @@
                             <td th:text="${pessoa.endereco.rua}"></td>
                             <td th:text="${pessoa.endereco.cep}"></td>
                             <td th:text="${pessoa.endereco.numero}"></td>
+                            <td>
+                                <a th:href="@{pessoa/{id}/editar(id = ${pessoa.id})}">Editar</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

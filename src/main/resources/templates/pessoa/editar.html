@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Cadastrar pessoas</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    </head>
+    <body>
+        <div th:replace="fragments/header::header"></div>
+        <main>
+            <div class="container">
+                <form th:object="${pessoa}" th:action="@{/pessoa/{id}/editar(id = ${pessoa.id})}" method="POST">
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input th:field="*{cpf}" type="text" class="form-control" id="cpf" placeholder="12345678900"
+                               required minlength="11" maxlength="11">
+                        <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="invalid-feedback d-block">Teste</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input th:field="*{nome}" type="text" class="form-control" id="nome" placeholder="Maria"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataDeNascimento">Data de nascimento</label>
+                        <input th:field="*{dataDeNascimento}" type="date" class="form-control" id="dataDeNascimento"
+                               placeholder="Maria" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <select th:field="*{sexo}" class="form-control" id="sexo">
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input th:field="*{telefone}" type="text" class="form-control" id="telefone"
+                               placeholder="(84) 98888-8888" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="estado">Estado</label>
+                            <input th:field="*{endereco.estado}" type="text" class="form-control" id="estado"
+                                   placeholder="RN" required>
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="cidade">Cidade</label>
+                            <input th:field="*{endereco.cidade}" type="text" class="form-control" id="cidade"
+                                   placeholder="Natal" required>
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="bairro">Bairro</label>
+                            <input th:field="*{endereco.bairro}" type="text" class="form-control" id="bairro"
+                                   placeholder="Centro" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="rua">Rua</label>
+                            <input th:field="*{endereco.rua}" type="text" class="form-control" id="rua"
+                                   placeholder="Dão Silveira" required>
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="cep">CEP</label>
+                            <input th:field="*{endereco.cep}" type="text" class="form-control" id="cep"
+                                   placeholder="59000000" required minlength="8" maxlength="8">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="numero">Número</label>
+                            <input th:field="*{endereco.numero}" type="text" class="form-control" id="numero"
+                                   placeholder="100" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </main>
+        <div th:replace="fragments/footer::footer"></div>
+        <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </body>
+</html>

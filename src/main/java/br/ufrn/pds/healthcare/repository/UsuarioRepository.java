@@ -1,6 +1,6 @@
 package br.ufrn.pds.healthcare.repository;
 
 import br.ufrn.pds.healthcare.model.Usuario;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsuarioRepository extends CrudRepository<Usuario, Long> {}
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {}

@@ -14,4 +14,8 @@ public interface PessoaService {
     Pessoa buscarPorId(Long id);
 
     List<Pessoa> buscarTodos();
+
+    List<Pessoa> buscarMedicos();
+
+    List<Pessoa> buscarPacientes();
 }

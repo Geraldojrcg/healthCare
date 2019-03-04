@@ -24,7 +24,7 @@ public class Pessoa extends EntidadeAbstrata {
     private String sexo;
     private String telefone;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataDeNascimento;
 
     @OneToOne

@@ -42,4 +42,16 @@ public class PessoaServiceImpl implements PessoaService {
     public List<Pessoa> buscarTodos() {
         return pessoaRepository.findAll();
     }
+
+    @Override
+    public List<Pessoa> buscarMedicos() {
+        // TODO Adiciona filtro no repositório para buscar apenas médicos
+        return pessoaRepository.findAll();
+    }
+
+    @Override
+    public List<Pessoa> buscarPacientes() {
+        // TODO Adiciona filtro no repositório para buscar apenas pacientes
+        return pessoaRepository.findAll();
+    }
 }

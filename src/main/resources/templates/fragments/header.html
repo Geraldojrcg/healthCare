@@ -1,8 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://thymeleaf.org">
     <body>
-        <header th:fragment="header">
-            Cabeçalho
+        <header th:fragment="header(activeTab)" class="mb-4">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" th:href="@{/}">HealthCare</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown" th:class="${activeTab == 'pessoa'} ? 'active'">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarPessoa" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Pessoa
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarPessoa">
+                                <a class="dropdown-item" th:href="@{/pessoa/cadastrar}">Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/pessoa}">Listar</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" th:class="${activeTab == 'tipoConsulta'} ? 'active'">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarTipoConsulta" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tipo consulta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarTipoConsulta">
+                                <a class="dropdown-item" th:href="@{/tipoConsulta/cadastrar}">Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/tipoConsulta}">Listar</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" th:class="${activeTab == 'consulta'} ? 'active'">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarConsulta" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Consulta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarConsulta">
+                                <a class="dropdown-item" th:href="@{/consulta/cadastrar}">Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/consulta}">Listar</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </header>
     </body>
 </html>

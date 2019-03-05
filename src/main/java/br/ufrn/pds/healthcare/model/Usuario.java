@@ -1,6 +1,5 @@
 package br.ufrn.pds.healthcare.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;

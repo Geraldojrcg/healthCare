@@ -1,12 +1,12 @@
 package br.ufrn.pds.healthcare.model;
 
-import org.hibernate.validator.constraints.Currency;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,6 +18,8 @@ public class Consulta extends EntidadeAbstrata {
     private double preco;
     @ManyToOne
     private TipoConsulta tipo;
+    @Enumerated(EnumType.STRING)
+    private ConsultaStatus status;
     @ManyToOne
     private Pessoa paciente;
     @ManyToOne(optional = false)
@@ -53,6 +55,14 @@ public class Consulta extends EntidadeAbstrata {
 
     public void setTipo(TipoConsulta tipo) {
         this.tipo = tipo;
+    }
+
+    public ConsultaStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ConsultaStatus status) {
+        this.status = status;
     }
 
     public Pessoa getPaciente() {

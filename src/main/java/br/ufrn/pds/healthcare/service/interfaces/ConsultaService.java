@@ -14,4 +14,6 @@ public interface ConsultaService {
     Consulta buscarPorId(Long id);
 
     List<Consulta> buscarTodos();
+
+    void atualizarStatusConsultasAtrasadas();
 }

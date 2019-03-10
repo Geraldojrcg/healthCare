@@ -19,6 +19,7 @@
                             <th scope="col">Preço</th>
                             <th scope="col">Médico</th>
                             <th scope="col">Tipo</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -30,6 +31,7 @@
                             <td th:text="${#numbers.formatCurrency(consulta.preco)}"></td>
                             <td th:text="${consulta.medico.nome}"></td>
                             <td th:text="${consulta.tipo.descricao}"></td>
+                            <td th:text="${consulta.status.nomeExibicao}"></td>
                             <td>
                                 <a th:href="@{consulta/{id}/editar(id = ${consulta.id})}">Editar</a>
                                 <a th:href="@{consulta/{id}/deletar(id = ${consulta.id})}">Deletar</a>

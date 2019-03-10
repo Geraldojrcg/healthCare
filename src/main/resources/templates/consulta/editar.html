@@ -46,6 +46,12 @@
                             <option th:each="medico : ${medicos}" th:value="${medico.id}" th:text="${medico.nome}"></option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select th:field="*{status}" class="form-control" id="status">
+                            <option th:each="status : ${T(br.ufrn.pds.healthcare.model.ConsultaStatus).values()}" th:value="${status}" th:text="${status.nomeExibicao}"></option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                     <a th:href="@{/consulta}" class="btn btn-warning">Voltar</a>
                 </form>

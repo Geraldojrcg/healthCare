@@ -1,11 +1,13 @@
 package br.ufrn.pds.healthcare.service;
 
 import br.ufrn.pds.healthcare.model.Consulta;
+import br.ufrn.pds.healthcare.model.ConsultaStatus;
 import br.ufrn.pds.healthcare.repository.ConsultaRepository;
 import br.ufrn.pds.healthcare.service.interfaces.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,6 +22,7 @@ public class ConsultaServiceImpl implements ConsultaService {
 
     @Override
     public Consulta salvar(Consulta consulta) {
+        consulta.setStatus(ConsultaStatus.MARCADA);
         return consultaRepository.save(consulta);
     }
 
@@ -41,5 +44,10 @@ public class ConsultaServiceImpl implements ConsultaService {
     @Override
     public List<Consulta> buscarTodos() {
         return consultaRepository.findAll();
+    }
+
+    @Override
+    public void atualizarStatusConsultasAtrasadas() {
+        consultaRepository.atualizarStatusConsultasAtrasadas(LocalDateTime.now());
     }
 }

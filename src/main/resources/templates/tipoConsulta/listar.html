@@ -5,31 +5,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Página inicial do sistema</title>
         <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
     </head>
     <body>
         <div th:replace="fragments/header::header('tipoConsulta')"></div>
         <main>
             <div class="container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="tipoConsulta : ${tiposConsulta}">
-                            <th th:text="${tipoConsulta.id}" scope="row"></th>
-                            <td th:text="${tipoConsulta.descricao}"></td>
-                            <td>
-                                <a th:href="@{tipoConsulta/{id}/editar(id = ${tipoConsulta.id})}">Editar</a>
-                                <a th:href="@{tipoConsulta/{id}/deletar(id = ${tipoConsulta.id})}">Deletar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a th:href="@{/tipoConsulta/cadastrar}" class="btn btn-primary">Cadastrar</a>
+                <div class="modal show bd-example-modal-xl" style="position: relative; display: block; z-index: 0">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 style="text-align: center"><i class="far fa-list-alt"></i>  Tipos de Consulta</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Descrição</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="tipoConsulta : ${tiposConsulta}">
+                                            <th th:text="${tipoConsulta.id}" scope="row"></th>
+                                            <td th:text="${tipoConsulta.descricao}"></td>
+                                            <td>
+                                                <div class="row" style="font-size: 20px; padding: 2px;">
+                                                    <div class="col-sm-2">
+                                                        <a th:href="@{tipoConsulta/{id}/editar(id = ${tipoConsulta.id})}"><i class="fas fa-edit"></i></a>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <a th:href="@{tipoConsulta/{id}/deletar(id = ${tipoConsulta.id})}" style="color: red"><i class="fas fa-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a th:href="@{/tipoConsulta/cadastrar}" class="btn btn-primary">Cadastrar novo tipo de consulta</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <div th:replace="fragments/footer::footer"></div>

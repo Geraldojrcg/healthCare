@@ -3,7 +3,7 @@
     <body>
         <header th:fragment="header(activeTab)" class="mb-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a class="navbar-brand" th:href="@{/}">HealthCare</a>
+                <a class="navbar-brand" th:href="@{/}"><i class="fas fa-heart"></i> HealthCare</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -12,40 +12,40 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown" th:class="${activeTab == 'pessoa'} ? 'active'">
+                        <li th:class="${activeTab == 'pessoa'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarPessoa" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Pessoa
+                                <i class="fas fa-address-book"></i> Pessoa
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarPessoa">
-                                <a class="dropdown-item" th:href="@{/pessoa/cadastrar}">Cadastrar</a>
-                                <a class="dropdown-item" th:href="@{/pessoa}">Listar</a>
+                                <a class="dropdown-item" th:href="@{/pessoa/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/pessoa}"><i class="fas fa-list-alt"></i> Listar</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown" th:class="${activeTab == 'tipoConsulta'} ? 'active'">
+                        <li th:class="${activeTab == 'tipoConsulta'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarTipoConsulta" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tipo consulta
+                                <i class="fas fa-file-medical-alt"></i> Tipo consulta
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarTipoConsulta">
-                                <a class="dropdown-item" th:href="@{/tipoConsulta/cadastrar}">Cadastrar</a>
-                                <a class="dropdown-item" th:href="@{/tipoConsulta}">Listar</a>
+                                <a class="dropdown-item" th:href="@{/tipoConsulta/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/tipoConsulta}"><i class="fas fa-list-alt"></i> Listar</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown" th:class="${activeTab == 'consulta'} ? 'active'">
+                        <li th:class="${activeTab == 'consulta'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarConsulta" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Consulta
+                                <i class="fas fa-notes-medical"></i> Consulta
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarConsulta">
-                                <a class="dropdown-item" th:href="@{/consulta/cadastrar}">Cadastrar</a>
-                                <a class="dropdown-item" th:href="@{/consulta}">Listar</a>
+                                <a class="dropdown-item" th:href="@{/consulta/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/consulta}"><i class="fas fa-list-alt"></i> Listar</a>
                             </div>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a th:href="@{/logout}" class="nav-link">Sair</a>
+                            <a th:href="@{/logout}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
                         </li>
                     </ul>
                 </div>

@@ -37,7 +37,7 @@
                                         <tr th:each="consulta : ${consultas}">
                                             <th th:text="${consulta.id}" scope="row"></th>
                                             <td th:text="${#temporals.format(consulta.horario, 'dd/MM/YYYY HH:mm')}"></td>
-                                            <td th:text="${consulta.paciente?.nome}"></td>
+                                            <td th:text="${consulta.paciente.nome}"></td>
                                             <td th:text="${#numbers.formatCurrency(consulta.preco)}"></td>
                                             <td th:text="${consulta.medico.nome}"></td>
                                             <td th:text="${consulta.tipo.descricao}"></td>

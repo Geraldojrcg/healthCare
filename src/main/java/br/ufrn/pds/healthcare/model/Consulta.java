@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Consulta extends EntidadeAbstrata {
-    @NotEmpty
-    private String nomePaciente;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime horario;
     private double preco;
@@ -24,14 +22,6 @@ public class Consulta extends EntidadeAbstrata {
     private Pessoa paciente;
     @ManyToOne(optional = false)
     private Pessoa medico;
-
-    public String getNomePaciente() {
-        return nomePaciente;
-    }
-
-    public void setNomePaciente(String nomePaciente) {
-        this.nomePaciente = nomePaciente;
-    }
 
     public LocalDateTime getHorario() {
         return horario;

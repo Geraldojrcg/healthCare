@@ -9,10 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("dashboard/pessoa")
 public class PessoaController {
 
     private final PessoaService pessoaService;
@@ -22,45 +24,45 @@ public class PessoaController {
         this.pessoaService = pessoaService;
     }
 
-    @GetMapping("pessoa")
+    @GetMapping
     public String listar(Model model) {
         model.addAttribute("pessoas", pessoaService.buscarTodos());
         return "pessoa/listar";
     }
 
-    @GetMapping("pessoa/cadastrar")
+    @GetMapping("cadastrar")
     public String cadastrar(Model model, Pessoa pessoa) {
         model.addAttribute("pessoa", pessoa);
         return "pessoa/cadastrar";
     }
 
-    @GetMapping("pessoa/{id}/editar")
+    @GetMapping("{id}/editar")
     public String editar(Model model, @PathVariable Long id) {
         model.addAttribute("pessoa", pessoaService.buscarPorId(id));
         return "pessoa/editar";
     }
 
-    @PostMapping("pessoa")
+    @PostMapping
     public String salvar(@Valid Pessoa pessoa, BindingResult result) {
         if(result.hasErrors()) {
             return "pessoa/cadastrar";
         }
         pessoaService.salvar(pessoa);
-        return "redirect:/pessoa";
+        return "redirect:/dashboard/pessoa";
     }
 
-    @PostMapping("pessoa/{id}/editar")
+    @PostMapping("{id}/editar")
     public String atualizar(Model model, @PathVariable Long id, @Valid Pessoa pessoa, BindingResult result) {
         if(result.hasErrors()) {
             return "pessoa/editar";
         }
         pessoaService.atualizar(pessoa);
-        return "redirect:/pessoa";
+        return "redirect:/dashboard/pessoa";
     }
 
-    @GetMapping("/pessoa/{id}/deletar")
+    @GetMapping("{id}/deletar")
     public String deletar(@PathVariable Long id) {
         pessoaService.deletar(id);
-        return "redirect:/pessoa";
+        return "redirect:/dashboard/pessoa";
     }
 }

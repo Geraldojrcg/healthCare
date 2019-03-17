@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Página inicial do sistema</title>
-        <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{/css/font-awesome-all.min.css}">
 
     </head>
@@ -16,59 +16,62 @@
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 style="text-align: center"><i class="far fa-list-alt"></i>  Pessoas</h3>
+                                <h3 style="text-align: center"><i class="far fa-list-alt"></i> Pessoas</h3>
                             </div>
                             <div class="modal-body">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
-                                        <tr>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">CPF</th>
-                                            <th scope="col">Nome</th>
-                                            <th scope="col">Data de nascimento</th>
-                                            <th scope="col">Sexo</th>
-                                            <th scope="col">Telefone</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Cidade</th>
-                                            <th scope="col">Bairro</th>
-                                            <th scope="col">Rua</th>
-                                            <th scope="col">CEP</th>
-                                            <th scope="col">Número</th>
-                                            <th scope="col">Ações</th>
-                                        </tr>
+                                            <tr>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">CPF</th>
+                                                <th scope="col">Nome</th>
+                                                <th scope="col">Data de nascimento</th>
+                                                <th scope="col">Sexo</th>
+                                                <th scope="col">Telefone</th>
+                                                <th scope="col">Estado</th>
+                                                <th scope="col">Cidade</th>
+                                                <th scope="col">Bairro</th>
+                                                <th scope="col">Rua</th>
+                                                <th scope="col">CEP</th>
+                                                <th scope="col">Número</th>
+                                                <th scope="col">Ações</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="pessoa : ${pessoas}">
-                                            <th th:text="${pessoa.id}" scope="row"></th>
-                                            <td th:text="${pessoa.cpf}"></td>
-                                            <td th:text="${pessoa.nome}"></td>
-                                            <td th:text="${#temporals.format(pessoa.dataDeNascimento, 'dd/MM/yyyy')}"></td>
-                                            <td th:text="${pessoa.sexo}"></td>
-                                            <td th:text="${pessoa.telefone}"></td>
-                                            <td th:text="${pessoa.endereco.estado}"></td>
-                                            <td th:text="${pessoa.endereco.cidade}"></td>
-                                            <td th:text="${pessoa.endereco.bairro}"></td>
-                                            <td th:text="${pessoa.endereco.rua}"></td>
-                                            <td th:text="${pessoa.endereco.cep}"></td>
-                                            <td th:text="${pessoa.endereco.numero}"></td>
-                                            <td>
-                                                <div class="row" style="font-size: 22px; padding: 2px;">
-                                                    <div class="col-sm-4">
-                                                        <a th:href="@{pessoa/{id}/editar(id = ${pessoa.id})}"><i class="fas fa-edit"></i></a>
+                                            <tr th:each="pessoa : ${pessoas}">
+                                                <th th:text="${pessoa.id}" scope="row"></th>
+                                                <td th:text="${pessoa.cpf}"></td>
+                                                <td th:text="${pessoa.nome}"></td>
+                                                <td th:text="${#temporals.format(pessoa.dataDeNascimento, 'dd/MM/yyyy')}"></td>
+                                                <td th:text="${pessoa.sexo}"></td>
+                                                <td th:text="${pessoa.telefone}"></td>
+                                                <td th:text="${pessoa.endereco.estado}"></td>
+                                                <td th:text="${pessoa.endereco.cidade}"></td>
+                                                <td th:text="${pessoa.endereco.bairro}"></td>
+                                                <td th:text="${pessoa.endereco.rua}"></td>
+                                                <td th:text="${pessoa.endereco.cep}"></td>
+                                                <td th:text="${pessoa.endereco.numero}"></td>
+                                                <td>
+                                                    <div class="row" style="font-size: 22px; padding: 2px;">
+                                                        <div class="col-sm-4">
+                                                            <a th:href="@{/dashboard/pessoa/{id}/editar(id = ${pessoa.id})}"><i
+                                                                    class="fas fa-edit"></i></a>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <a th:href="@{/dashboard/pessoa/{id}/deletar(id = ${pessoa.id})}"
+                                                               style="color: red"><i class="fas fa-trash"></i></a>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-sm-4">
-                                                        <a th:href="@{pessoa/{id}/deletar(id = ${pessoa.id})}" style="color: red"><i class="fas fa-trash"></i></a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a th:href="@{/pessoa/cadastrar}" class="btn btn-primary">Cadastrar nova pessoa</a>
+                                <a th:href="@{/dashboard/pessoa/cadastrar}" class="btn btn-primary">Cadastrar nova
+                                    pessoa</a>
                             </div>
                         </div>
                     </div>
@@ -76,8 +79,8 @@
             </div>
         </main>
         <div th:replace="fragments/footer::footer"></div>
-        <script th:src="@{js/jquery-3.3.1.min.js}"></script>
-        <script th:src="@{js/popper.min.js}"></script>
-        <script th:src="@{js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
     </body>
 </html>

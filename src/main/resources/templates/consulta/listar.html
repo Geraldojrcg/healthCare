@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Página inicial do sistema</title>
-        <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{/css/font-awesome-all.min.css}">
 
     </head>
@@ -45,10 +45,10 @@
                                             <td>
                                                 <div class="row" style="font-size: 20px; padding: 2px;">
                                                     <div class="col-sm-2">
-                                                        <a th:href="@{consulta/{id}/editar(id = ${consulta.id})}"><i class="fas fa-edit"></i></a>
+                                                        <a th:href="@{/dashboard/consulta/{id}/editar(id = ${consulta.id})}"><i class="fas fa-edit"></i></a>
                                                     </div>
                                                     <div class="col-sm-2">
-                                                        <a th:href="@{consulta/{id}/deletar(id = ${consulta.id})}" style="color: red"><i class="fas fa-trash"></i></a>
+                                                        <a th:href="@{/dashboard/consulta/{id}/deletar(id = ${consulta.id})}" style="color: red"><i class="fas fa-trash"></i></a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a th:href="@{/consulta/cadastrar}" class="btn btn-primary">Cadastrar nova consulta</a>
+                                <a th:href="@{/dashboard/consulta/cadastrar}" class="btn btn-primary">Cadastrar nova consulta</a>
                             </div>
                         </div>
                     </div>
@@ -66,8 +66,8 @@
             </div>
         </main>
         <div th:replace="fragments/footer::footer"></div>
-        <script th:src="@{js/jquery-3.3.1.min.js}"></script>
-        <script th:src="@{js/popper.min.js}"></script>
-        <script th:src="@{js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
     </body>
 </html>

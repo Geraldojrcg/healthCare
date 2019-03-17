@@ -1,6 +1,7 @@
 package br.ufrn.pds.healthcare.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -16,6 +17,9 @@ public class Usuario extends EntidadeAbstrata {
 
     @OneToOne
     private Pessoa pessoa;
+
+    @ManyToOne(optional = false)
+    private Perfil perfil;
 
     public String getEmail() {
         return email;
@@ -39,5 +43,13 @@ public class Usuario extends EntidadeAbstrata {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 }

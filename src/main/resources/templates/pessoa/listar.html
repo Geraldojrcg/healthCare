@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a th:href="@{/dashboard/pessoa/cadastrar}" class="btn btn-primary">Cadastrar nova
+                                <a sec:authorize="${hasRole('MEDICO')}" th:href="@{/dashboard/pessoa/cadastrar}" class="btn btn-primary">Cadastrar nova
                                     pessoa</a>
                             </div>
                         </div>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="formulario">
+            <label for="email">Email:</label>
+            <input id="email" th:field="*{email}" type="email">
+            <label for="perfil">Perfil:</label>
+            <select id="perfil" th:field="*{perfil}">
+                <option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.descricao}"></option>
+            </select>
+        </div>
+    </body>
+</html>

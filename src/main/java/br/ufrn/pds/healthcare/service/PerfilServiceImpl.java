@@ -6,6 +6,8 @@ import br.ufrn.pds.healthcare.service.interfaces.PerfilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PerfilServiceImpl implements PerfilService {
 
@@ -14,6 +16,11 @@ public class PerfilServiceImpl implements PerfilService {
     @Autowired
     public PerfilServiceImpl(PerfilRepository perfilRepository) {
         this.perfilRepository = perfilRepository;
+    }
+
+    @Override
+    public List<Perfil> buscarTodos() {
+        return perfilRepository.findAll();
     }
 
     @Override

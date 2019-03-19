@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/dashboard/main}" th:with="currentPage = 'usuario'">
+    <head>
+        <title>Editar usuário</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <form th:object="${usuario}" th:action="@{/dashboard/usuario/{id}/editar(id = ${usuario.id})}" method="POST">
+                <div th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+                <div th:replace="/dashboard/usuario/formulario::formulario"></div>
+                <button type="submit">Salvar</button>
+                <a th:href="@{/dashboard/usuario}">Voltar</a>
+            </form>
+        </div>
+    </body>
+</html>

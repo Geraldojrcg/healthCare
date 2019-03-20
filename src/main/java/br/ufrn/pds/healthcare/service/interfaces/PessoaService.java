@@ -13,6 +13,8 @@ public interface PessoaService {
 
     Pessoa buscarPorId(Long id);
 
+    Pessoa buscarPorCpf(String cpf);
+
     List<Pessoa> buscarTodos();
 
     List<Pessoa> buscarMedicos();

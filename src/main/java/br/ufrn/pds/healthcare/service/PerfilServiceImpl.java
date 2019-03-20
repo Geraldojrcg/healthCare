@@ -24,7 +24,7 @@ public class PerfilServiceImpl implements PerfilService {
     }
 
     @Override
-    public Perfil buscarPorDescricao(String descricao) {
-        return perfilRepository.findByDescricao(descricao);
+    public Perfil buscarPorNome(String nome) {
+        return perfilRepository.findByNome(nome);
     }
 }

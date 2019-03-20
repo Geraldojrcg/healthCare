@@ -39,6 +39,11 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
+    public Pessoa buscarPorCpf(String cpf) {
+        return pessoaRepository.findByCpf(cpf);
+    }
+
+    @Override
     public List<Pessoa> buscarTodos() {
         return pessoaRepository.findAll();
     }

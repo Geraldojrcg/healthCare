@@ -23,7 +23,7 @@
                         <td th:text="${usuario.cpf}"></td>
                         <td th:text="${usuario.pessoa?.nome}"></td>
                         <td th:text="${usuario.email}"></td>
-                        <td th:text="${usuario.perfil.descricao}"></td>
+                        <td th:text="${usuario.pessoa.perfil.nome}"></td>
                         <td>
                             <a th:replace="/layout/dashboard/fragments/acoes::editar(@{/dashboard/usuario/{id}/editar(id = ${usuario.id})})"></a>
                             <a th:replace="/layout/dashboard/fragments/acoes::deletar(@{/dashboard/usuario/{id}/deletar(id = ${usuario.id})})"></a>

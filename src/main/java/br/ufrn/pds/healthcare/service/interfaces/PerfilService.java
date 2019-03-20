@@ -7,5 +7,5 @@ import java.util.List;
 public interface PerfilService {
     List<Perfil> buscarTodos();
 
-    Perfil buscarPorDescricao(String descricao);
+    Perfil buscarPorNome(String nome);
 }

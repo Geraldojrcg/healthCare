@@ -1,20 +1,12 @@
 package br.ufrn.pds.healthcare.model;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
-
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Usuario extends EntidadeAbstrata {
-    @CPF
-    @NotEmpty
-    @Length(min = 11, max = 11, message = "O campo cpf deve ter 11 dígitos")
-    private String cpf;
 
     @Email
     @NotEmpty(message = "O campo email é obrigatório.")
@@ -23,19 +15,8 @@ public class Usuario extends EntidadeAbstrata {
     @NotEmpty(message = "O campo senha é obrigatório")
     private String senha;
 
-    @OneToOne
+    @OneToOne(mappedBy = "usuario")
     private Pessoa pessoa;
-
-    @ManyToOne(optional = false)
-    private Perfil perfil;
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     public String getEmail() {
         return email;
@@ -59,13 +40,5 @@ public class Usuario extends EntidadeAbstrata {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
-    }
-
-    public Perfil getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
     }
 }

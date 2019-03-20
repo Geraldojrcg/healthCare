@@ -63,6 +63,12 @@
                                             <input th:field="*{telefone}" type="text" class="form-control tel" id="telefone"
                                                    placeholder="(84) 98888-8888" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="perfil">Perfil</label>
+                                            <select th:field="*{perfil}" class="form-control" id="perfil">
+                                                <option th:each="perfil : ${perfis}" th:value="${perfil.id}" th:text="${perfil.nome}"></option>
+                                            </select>
+                                        </div>
                                         <div class="form-row">
                                             <div class="form-group col-4">
                                                 <label for="estado">Estado</label>

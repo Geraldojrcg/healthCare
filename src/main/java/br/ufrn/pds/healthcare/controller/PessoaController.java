@@ -1,6 +1,7 @@
 package br.ufrn.pds.healthcare.controller;
 
 import br.ufrn.pds.healthcare.model.Pessoa;
+import br.ufrn.pds.healthcare.service.interfaces.PerfilService;
 import br.ufrn.pds.healthcare.service.interfaces.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,12 @@ import javax.validation.Valid;
 public class PessoaController {
 
     private final PessoaService pessoaService;
+    private final PerfilService perfilService;
 
     @Autowired
-    public PessoaController(PessoaService pessoaService) {
+    public PessoaController(PessoaService pessoaService, PerfilService perfilService) {
         this.pessoaService = pessoaService;
+        this.perfilService = perfilService;
     }
 
     @GetMapping
@@ -33,12 +36,14 @@ public class PessoaController {
     @GetMapping("cadastrar")
     public String cadastrar(Model model, Pessoa pessoa) {
         model.addAttribute("pessoa", pessoa);
+        model.addAttribute("perfis", perfilService.buscarTodos());
         return "pessoa/cadastrar";
     }
 
     @GetMapping("{id}/editar")
     public String editar(Model model, @PathVariable Long id) {
         model.addAttribute("pessoa", pessoaService.buscarPorId(id));
+        model.addAttribute("perfis", perfilService.buscarTodos());
         return "pessoa/editar";
     }
 

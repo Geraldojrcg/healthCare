@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario salvar(Usuario usuario) {
-        usuario.setPerfil(perfilService.buscarPorDescricao("USUARIO"));
+        //usuario.setPerfil(perfilService.buscarPorDescricao("USUARIO"));
         usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
         return usuarioRepository.save(usuario);
     }

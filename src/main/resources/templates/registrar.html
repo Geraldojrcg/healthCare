@@ -11,7 +11,7 @@
         <form th:object="${usuario}" th:action="@{/registrar}" method="POST">
             <label for="cpf">CPF:</label>
             <input id="cpf" type="text" th:field="*{pessoa.cpf}" minlength="11" maxlength="11">
-            <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></div>
+            <div th:if="${#fields.hasErrors('pessoa.cpf')}" th:errors="*{pessoa.cpf}"></div>
             <label for="email">E-mail:</label>
             <input id="email" type="email" th:field="*{email}">
             <label for="senha">Senha:</label>

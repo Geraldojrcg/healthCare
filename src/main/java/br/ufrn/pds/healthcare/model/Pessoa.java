@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -17,6 +18,7 @@ public class Pessoa extends EntidadeAbstrata {
     @CPF
     @NotEmpty
     @Length(min = 11, max = 11)
+    @Column(unique = true)
     private String cpf;
 
     @NotEmpty

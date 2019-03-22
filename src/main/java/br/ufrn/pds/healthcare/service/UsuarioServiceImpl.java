@@ -1,6 +1,5 @@
 package br.ufrn.pds.healthcare.service;
 
-import br.ufrn.pds.healthcare.exception.SalvarUsuarioException;
 import br.ufrn.pds.healthcare.model.Pessoa;
 import br.ufrn.pds.healthcare.model.Usuario;
 import br.ufrn.pds.healthcare.repository.UsuarioRepository;
@@ -25,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario salvar(Usuario usuario) throws SalvarUsuarioException {
+    public Usuario salvar(Usuario usuario) {
         if(ehValido(usuario)) {
             usuario.setPessoa(pessoaService.buscarPorCpf(usuario.getPessoa().getCpf()));
             usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
@@ -34,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         return null;
     }
 
-    private boolean ehValido(Usuario usuario) throws SalvarUsuarioException {
+    private boolean ehValido(Usuario usuario) {
         Pessoa pessoa = pessoaService.buscarPorCpf(usuario.getPessoa().getCpf());
         Usuario temp = usuarioRepository.findByEmail(usuario.getEmail());
         return temp == null && pessoa != null && pessoa.getUsuario() == null;

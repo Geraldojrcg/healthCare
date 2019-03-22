@@ -1,7 +1,9 @@
 package br.ufrn.pds.healthcare.service;
 
+import br.ufrn.pds.healthcare.model.Perfil;
 import br.ufrn.pds.healthcare.model.Pessoa;
 import br.ufrn.pds.healthcare.repository.PessoaRepository;
+import br.ufrn.pds.healthcare.service.interfaces.PerfilService;
 import br.ufrn.pds.healthcare.service.interfaces.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,12 @@ import java.util.List;
 public class PessoaServiceImpl implements PessoaService {
 
     private final PessoaRepository pessoaRepository;
+    private final PerfilService perfilService;
 
     @Autowired
-    public PessoaServiceImpl(PessoaRepository pessoaRepository) {
+    public PessoaServiceImpl(PessoaRepository pessoaRepository, PerfilService perfilService) {
         this.pessoaRepository = pessoaRepository;
+        this.perfilService = perfilService;
     }
 
     @Override
@@ -50,13 +54,13 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public List<Pessoa> buscarMedicos() {
-        // TODO Adiciona filtro no repositório para buscar apenas médicos
-        return pessoaRepository.findAll();
+        Perfil medico = perfilService.buscarPorNome("MEDICO");
+        return pessoaRepository.findByPerfil(medico);
     }
 
     @Override
     public List<Pessoa> buscarPacientes() {
-        // TODO Adiciona filtro no repositório para buscar apenas pacientes
-        return pessoaRepository.findAll();
+        Perfil paciente = perfilService.buscarPorNome("PACIENTE");
+        return pessoaRepository.findByPerfil(paciente);
     }
 }

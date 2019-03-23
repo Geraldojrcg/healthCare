@@ -5,6 +5,7 @@ import br.ufrn.pds.healthcare.service.interfaces.ConsultaService;
 import br.ufrn.pds.healthcare.service.interfaces.PessoaService;
 import br.ufrn.pds.healthcare.service.interfaces.TipoConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,12 +32,14 @@ public class ConsultaController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE', 'PACIENTE')")
     public String listar(Model model) {
         model.addAttribute("consultas", consultaService.buscarTodos());
         return "consulta/listar";
     }
 
     @GetMapping("cadastrar")
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String cadastrar(Model model, Consulta consulta) {
         model.addAttribute("consulta", consulta);
         model.addAttribute("tiposConsulta", tipoConsultaService.buscarTodos());
@@ -46,6 +49,7 @@ public class ConsultaController {
     }
 
     @GetMapping("{id}/editar")
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String editar(Model model, @PathVariable Long id) {
         model.addAttribute("consulta", consultaService.buscarPorId(id));
         model.addAttribute("tiposConsulta", tipoConsultaService.buscarTodos());
@@ -55,6 +59,7 @@ public class ConsultaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String salvar(@Valid Consulta consulta, BindingResult result) {
         if(result.hasErrors()) {
             return "consulta/cadastrar";
@@ -64,6 +69,7 @@ public class ConsultaController {
     }
 
     @PostMapping("{id}/editar")
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String atualizar(Model model, @PathVariable Long id, @Valid Consulta consulta, BindingResult result) {
         if(result.hasErrors()) {
             return "consulta/editar";
@@ -73,6 +79,7 @@ public class ConsultaController {
     }
 
     @GetMapping("{id}/deletar")
+    @PreAuthorize("hasRole('MEDICO')")
     public String deletar(@PathVariable Long id) {
         consultaService.deletar(id);
         return "redirect:/dashboard/consulta";

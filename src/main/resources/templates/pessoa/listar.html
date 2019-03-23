@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Página inicial do sistema</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{/css/font-awesome-all.min.css}">
-
     </head>
     <body>
         <div th:replace="fragments/header::header('pessoa')"></div>
@@ -57,12 +58,15 @@
                                                 <td>
                                                     <div class="row" style="font-size: 22px; padding: 2px;">
                                                         <div class="col-sm-4">
-                                                            <a th:href="@{/dashboard/pessoa/{id}/editar(id = ${pessoa.id})}"><i
-                                                                    class="fas fa-edit"></i></a>
+                                                            <a th:href="@{/dashboard/pessoa/{id}/editar(id = ${pessoa.id})}">
+                                                                <i class="fas fa-edit"></i>
+                                                            </a>
                                                         </div>
-                                                        <div class="col-sm-4">
+                                                        <div sec:authorize="${hasRole('MEDICO')}" class="col-sm-4">
                                                             <a th:href="@{/dashboard/pessoa/{id}/deletar(id = ${pessoa.id})}"
-                                                               style="color: red"><i class="fas fa-trash"></i></a>
+                                                               style="color: red">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -72,8 +76,10 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a sec:authorize="${hasRole('MEDICO')}" th:href="@{/dashboard/pessoa/cadastrar}" class="btn btn-primary">Cadastrar nova
-                                    pessoa</a>
+                                <a sec:authorize="${hasAnyRole('MEDICO', 'ATENDENTE')}"
+                                   th:href="@{/dashboard/pessoa/cadastrar}" class="btn btn-primary">
+                                    Cadastrar nova pessoa
+                                </a>
                             </div>
                         </div>
                     </div>

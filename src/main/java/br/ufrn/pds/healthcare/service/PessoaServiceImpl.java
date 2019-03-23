@@ -24,6 +24,9 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public Pessoa salvar(Pessoa pessoa) {
+        if(pessoa.getPerfil() == null) {
+            pessoa.setPerfil(perfilService.buscarPorNome("PACIENTE"));
+        }
         return pessoaRepository.save(pessoa);
     }
 

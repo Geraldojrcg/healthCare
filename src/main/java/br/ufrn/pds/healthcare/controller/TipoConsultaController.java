@@ -3,6 +3,7 @@ package br.ufrn.pds.healthcare.controller;
 import br.ufrn.pds.healthcare.model.TipoConsulta;
 import br.ufrn.pds.healthcare.service.interfaces.TipoConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,24 +26,28 @@ public class TipoConsultaController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String listar(Model model) {
         model.addAttribute("tiposConsulta", tipoConsultaService.buscarTodos());
         return "tipoConsulta/listar";
     }
 
     @GetMapping("cadastrar")
+    @PreAuthorize("hasRole('MEDICO')")
     public String cadastrar(Model model, TipoConsulta tipoConsulta) {
         model.addAttribute("tipoConsulta", tipoConsulta);
         return "tipoConsulta/cadastrar";
     }
 
     @GetMapping("{id}/editar")
+    @PreAuthorize("hasRole('MEDICO')")
     public String editar(Model model, @PathVariable Long id) {
         model.addAttribute("tipoConsulta", tipoConsultaService.buscarPorId(id));
         return "tipoConsulta/editar";
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('MEDICO')")
     public String salvar(@Valid TipoConsulta tipoConsulta, BindingResult result) {
         if(result.hasErrors()) {
             return "tipoConsulta/cadastrar";
@@ -52,6 +57,7 @@ public class TipoConsultaController {
     }
 
     @PostMapping("{id}/editar")
+    @PreAuthorize("hasRole('MEDICO')")
     public String atualizar(Model model, @PathVariable Long id, @Valid TipoConsulta tipoConsulta, BindingResult result) {
         if(result.hasErrors()) {
             return "tipoConsulta/editar";
@@ -61,6 +67,7 @@ public class TipoConsultaController {
     }
 
     @GetMapping("{id}/deletar")
+    @PreAuthorize("hasRole('MEDICO')")
     public String deletar(@PathVariable Long id) {
         tipoConsultaService.deletar(id);
         return "redirect:/dashboard/tipoConsulta";

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,10 +37,10 @@
                                             <td>
                                                 <div class="row" style="font-size: 20px; padding: 2px;">
                                                     <div class="col-sm-2">
-                                                        <a th:href="@{/dashboard/tipoConsulta/{id}/editar(id = ${tipoConsulta.id})}"><i class="fas fa-edit"></i></a>
+                                                        <a sec:authorize="${hasRole('MEDICO')}" th:href="@{/dashboard/tipoConsulta/{id}/editar(id = ${tipoConsulta.id})}"><i class="fas fa-edit"></i></a>
                                                     </div>
                                                     <div class="col-sm-2">
-                                                        <a th:href="@{/dashboard/tipoConsulta/{id}/deletar(id = ${tipoConsulta.id})}" style="color: red"><i class="fas fa-trash"></i></a>
+                                                        <a sec:authorize="${hasRole('MEDICO')}" th:href="@{/dashboard/tipoConsulta/{id}/deletar(id = ${tipoConsulta.id})}" style="color: red"><i class="fas fa-trash"></i></a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -48,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a th:href="@{/dashboard/tipoConsulta/cadastrar}" class="btn btn-primary">Cadastrar novo tipo de consulta</a>
+                                <a sec:authorize="${hasRole('MEDICO')}" th:href="@{/dashboard/tipoConsulta/cadastrar}" class="btn btn-primary">Cadastrar novo tipo de consulta</a>
                             </div>
                         </div>
                     </div>

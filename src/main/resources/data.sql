@@ -1,4 +1,10 @@
-INSERT INTO endereco VALUES(null, 'Lagoa Nova', '59078970', 'Natal', 'RN', 3000, 'Av. Sen. Salgado Filho');
-INSERT INTO usuario VALUES(null, 'medico', '$2a$10$aah8/TzRomSdcXm.GXx6uey6ZEFA/7CGS02qYVxwJYvgs5m98NsSK');
-INSERT INTO perfil VALUES (null, 'MEDICO'), (null, 'ATENDENTE'), (null, 'PACIENTE');
-INSERT INTO pessoa VALUES(null, '29296487080', '2019-03-17', 'Maria Flores', 'Feminino', '84988888888', 1, 1, 1);
+INSERT INTO endereco VALUES(1, 'Lagoa Nova', '59078970', 'Natal', 'RN', 3000, 'Av. Sen. Salgado Filho');
+INSERT INTO endereco VALUES(2, 'Candelária', '59000123', 'Natal', 'RN', 234, 'Av. Prudente de Morais');
+INSERT INTO endereco VALUES(3, 'Neópolis', '5912345', 'Natal', 'RN', '678', 'Av. Ayrton Senna');
+INSERT INTO perfil VALUES (1, 'MEDICO'), (2, 'ATENDENTE'), (3, 'PACIENTE');
+INSERT INTO usuario VALUES(1, 'medico@example.com', '$2a$10$aah8/TzRomSdcXm.GXx6uey6ZEFA/7CGS02qYVxwJYvgs5m98NsSK');
+INSERT INTO usuario VALUES(2, 'atendente@example.com', '$2a$10$qS1Flar3vQMaZ8XQVA7NHudbUWJDrOc8RCjLPPMrqi67Y2B.sLv/S');
+INSERT INTO usuario VALUES(3, 'paciente@example.com', '$2a$10$QRr/W6V8wP8i9YUAVDXmgO.mGWN8dnIsAO.ndrGwd/9Xo0DvmbM4O');
+INSERT INTO pessoa VALUES(1, '29296487080', '2019-03-17', 'Fulano Médico', 'Feminino', '84988888888', 1, 1, 1);
+INSERT INTO pessoa VALUES(2, '71880970031', '2019-03-17', 'Fulano Atendente', 'Feminino', '84988888888', 2, 2, 2);
+INSERT INTO pessoa VALUES(3, '74203535069', '2019-03-17', 'Fulano Paciente', 'Feminino', '84988888888', 3, 3, 3);

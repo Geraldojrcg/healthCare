@@ -30,7 +30,7 @@ public class Pessoa extends EntidadeAbstrata {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataDeNascimento;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @Cascade(CascadeType.ALL)
     private Endereco endereco;
 

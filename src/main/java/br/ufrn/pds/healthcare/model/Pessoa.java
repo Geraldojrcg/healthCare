@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Pessoa extends EntidadeAbstrata {
     @CPF
     @NotEmpty
-    @Length(min = 11, max = 11)
+    @Length(min = 16, max = 16)
     private String cpf;
 
     @NotEmpty

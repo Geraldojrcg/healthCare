@@ -42,6 +42,11 @@
                                 <a class="dropdown-item" th:href="@{/consulta}"><i class="fas fa-list-alt"></i> Listar</a>
                             </div>
                         </li>
+                        <li th:class="${activeTab == 'agenda'} ? 'nav-item active' : 'nav-item' ">
+                            <a class="nav-link" th:href="@{/agenda}" id="navbarAgenda">
+                                <i class="fas fa-notes-medical"></i> Agenda
+                            </a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">

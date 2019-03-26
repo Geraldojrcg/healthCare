@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Agenda</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <link th:href="@{/fullcalendar/packages/core/main.css}" rel='stylesheet' />
+        <link th:href="@{/fullcalendar/packages/daygrid/main.css}" rel='stylesheet' />
+
+        <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
+        <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
+        <script th:src='@{/fullcalendar/packages/core/locales/pt-br.js}'></script>
+        <script th:src='@{/fullcalendar/packages/google-calendar/main.js}'></script>
+        <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
+
+    </head>
+    <body>
+        <div th:replace="fragments/header::header('agenda')"></div>
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div id='calendar'></div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <script type="text/javascript">
+
+            // Client ID and API key from the Developer Console
+            var CLIENT_ID = '80966816365-i4769foo48kg17ttqs1c0vrvq2mf0ns1.apps.googleusercontent.com';
+            var API_KEY = 'AIzaSyBqz97lTg4TT_SPTD47o_wHBW51XyKQwVk';
+
+            var newEvent = {
+                title: "",
+                start: null,
+                allDay: ""
+            };
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    plugins: [ 'dayGrid', 'googleCalendar', 'interaction'],
+                    locale: "pt-br",
+                    height: 650,
+                    // googleCalendarApiKey: API_KEY,
+                    // events: {
+                    //     googleCalendarId: "geraldojrcg@gmail.com",
+                    //     className: 'gcal-event'
+                    // },
+                    selectable: true,
+                    select: function(date, end, jsEvent, view) {
+                        var title = prompt("Informe o título do evento:");
+                        if(title){
+                            newEvent.title = title;
+                            newEvent.start = moment(date.start).format();
+                            newEvent.allDay = true;
+                            calendar.addEvent(newEvent);
+                        }
+                    }
+                });
+
+                calendar.render();
+            });
+        </script>
+    </body>
+</html>

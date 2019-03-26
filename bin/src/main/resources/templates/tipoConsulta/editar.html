@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Cadastrar pessoas</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div th:replace="fragments/header::header('tipoConsulta')"></div>
+        <main>
+            <div class="container">
+                <div class="modal show bd-example-modal-xl" style="position: relative; display: block; z-index: 0">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <form th:object="${tipoConsulta}" th:action="@{/tipoConsulta/{id}/editar(id = ${tipoConsulta.id})}" method="POST">
+                                <div class="modal-header">
+                                    <h3 style="text-align: center"><i class="fas fa-edit"></i>  Editar tipo de consulta</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="descricao">Tipo</label>
+                                        <input th:field="*{descricao}" type="text" class="form-control" id="descricao" placeholder="Primeira consulta"
+                                               required>
+                                        <div th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="invalid-feedback d-block"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                    <a th:href="@{/tipoConsulta}" class="btn btn-warning">Voltar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div th:replace="fragments/footer::footer"></div>
+        <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </body>
+</html>

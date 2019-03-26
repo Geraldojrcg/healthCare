@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,12 +13,16 @@ public class Consulta extends EntidadeAbstrata {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime horario;
     private double preco;
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     private TipoConsulta tipo;
+
     @Enumerated(EnumType.STRING)
     private ConsultaStatus status;
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     private Pessoa paciente;
+
     @ManyToOne(optional = false)
     private Pessoa medico;
 

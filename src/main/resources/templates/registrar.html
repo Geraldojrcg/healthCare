@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Registrar</title>
+    </head>
+    <body>
+        <form th:object="${usuario}" th:action="@{/registrar}" method="POST">
+            <label for="cpf">CPF:</label>
+            <input id="cpf" type="text" th:field="*{pessoa.cpf}" minlength="11" maxlength="11">
+            <div th:if="${#fields.hasErrors('pessoa.cpf')}" th:errors="*{pessoa.cpf}"></div>
+            <label for="email">E-mail:</label>
+            <input id="email" type="email" th:field="*{email}">
+            <label for="senha">Senha:</label>
+            <input id="senha" th:field="*{senha}">
+            <button type="submit">Registrar</button>
+        </form>
+    </body>
+</html>

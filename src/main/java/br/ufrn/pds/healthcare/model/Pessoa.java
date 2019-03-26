@@ -6,7 +6,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
@@ -15,7 +17,8 @@ import java.time.LocalDate;
 public class Pessoa extends EntidadeAbstrata {
     @CPF
     @NotEmpty
-    @Length(min = 16, max = 16)
+    @Length(min = 11, max = 11)
+    @Column(unique = true)
     private String cpf;
 
     @NotEmpty
@@ -27,9 +30,16 @@ public class Pessoa extends EntidadeAbstrata {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataDeNascimento;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @Cascade(CascadeType.ALL)
     private Endereco endereco;
+
+    @ManyToOne
+    private Perfil perfil;
+
+    @OneToOne
+    @Cascade(CascadeType.ALL)
+    private Usuario usuario;
 
     public String getCpf() {
         return cpf;
@@ -77,5 +87,21 @@ public class Pessoa extends EntidadeAbstrata {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

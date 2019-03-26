@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Cadastrar pessoas</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/css/font-awesome-all.min.css}">
 
     </head>
     <body>
@@ -15,7 +15,7 @@
                 <div class="modal show bd-example-modal-xl" style="position: relative; display: block; z-index: 0">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
-                            <form th:object="${consulta}" th:action="@{/consulta}" method="POST">
+                            <form th:object="${consulta}" th:action="@{/dashboard/consulta}" method="POST">
                                 <div class="modal-header">
                                     <h3 style="text-align: center"><i class="fas fa-plus-square"></i>  Cadastrar nova consulta</h3>
                                 </div>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">Salvar</button>
-                                    <a th:href="@{/consulta}" class="btn btn-warning">Voltar</a>
+                                    <a th:href="@{/dashboard/consulta}" class="btn btn-warning">Voltar</a>
                                 </div>
                             </form>
                         </div>

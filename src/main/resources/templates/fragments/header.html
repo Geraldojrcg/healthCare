@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <body>
         <header th:fragment="header(activeTab)" class="mb-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a class="navbar-brand" th:href="@{/}"><i class="fas fa-heart"></i> HealthCare</a>
+                <a class="navbar-brand" th:href="@{/dashboard}"><i class="fas fa-heart"></i> HealthCare</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -12,34 +14,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li th:class="${activeTab == 'pessoa'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
+                        <li sec:authorize="${hasAnyRole('MEDICO, ATENDENTE')}" th:class="${activeTab == 'pessoa'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarPessoa" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-address-book"></i> Pessoa
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarPessoa">
-                                <a class="dropdown-item" th:href="@{/pessoa/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
-                                <a class="dropdown-item" th:href="@{/pessoa}"><i class="fas fa-list-alt"></i> Listar</a>
+                                <a class="dropdown-item" th:href="@{/dashboard/pessoa/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/dashboard/pessoa}"><i class="fas fa-list-alt"></i> Listar</a>
                             </div>
                         </li>
-                        <li th:class="${activeTab == 'tipoConsulta'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
+                        <li sec:authorize="${hasAnyRole('MEDICO', 'ATENDENTE')}" th:class="${activeTab == 'tipoConsulta'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarTipoConsulta" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-file-medical-alt"></i> Tipo consulta
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarTipoConsulta">
-                                <a class="dropdown-item" th:href="@{/tipoConsulta/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
-                                <a class="dropdown-item" th:href="@{/tipoConsulta}"><i class="fas fa-list-alt"></i> Listar</a>
+                                <a sec:authorize="${hasRole('MEDICO')}" class="dropdown-item" th:href="@{/dashboard/tipoConsulta/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/dashboard/tipoConsulta}"><i class="fas fa-list-alt"></i> Listar</a>
                             </div>
                         </li>
-                        <li th:class="${activeTab == 'consulta'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
+                        <li sec:authorize="${hasAnyRole('MEDICO', 'ATENDENTE', 'PACIENTE')}" th:class="${activeTab == 'consulta'} ? 'nav-item dropdown active' : 'nav-item dropdown' ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarConsulta" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-notes-medical"></i> Consulta
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarConsulta">
-                                <a class="dropdown-item" th:href="@{/consulta/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
-                                <a class="dropdown-item" th:href="@{/consulta}"><i class="fas fa-list-alt"></i> Listar</a>
+                                <a sec:authorize="${hasAnyRole('MEDICO', 'ATENDENTE')}" class="dropdown-item" th:href="@{/dashboard/consulta/cadastrar}"><i class="fas fa-plus-square"></i> Cadastrar</a>
+                                <a class="dropdown-item" th:href="@{/dashboard/consulta}"><i class="fas fa-list-alt"></i> Listar</a>
                             </div>
                         </li>
                         <li th:class="${activeTab == 'agenda'} ? 'nav-item active' : 'nav-item' ">

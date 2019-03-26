@@ -1,5 +1,6 @@
 package br.ufrn.pds.healthcare.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
@@ -7,14 +8,16 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Usuario extends EntidadeAbstrata {
+
     @Email
     @NotEmpty(message = "O campo email é obrigatório.")
+    @Column(unique = true)
     private String email;
 
     @NotEmpty(message = "O campo senha é obrigatório")
     private String senha;
 
-    @OneToOne
+    @OneToOne(mappedBy = "usuario")
     private Pessoa pessoa;
 
     public String getEmail() {

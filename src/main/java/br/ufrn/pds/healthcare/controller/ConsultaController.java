@@ -5,16 +5,19 @@ import br.ufrn.pds.healthcare.service.interfaces.ConsultaService;
 import br.ufrn.pds.healthcare.service.interfaces.PessoaService;
 import br.ufrn.pds.healthcare.service.interfaces.TipoConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("dashboard/consulta")
 public class ConsultaController {
 
     private final ConsultaService consultaService;
@@ -28,13 +31,15 @@ public class ConsultaController {
         this.pessoaService = pessoaService;
     }
 
-    @GetMapping("consulta")
+    @GetMapping
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE', 'PACIENTE')")
     public String listar(Model model) {
         model.addAttribute("consultas", consultaService.buscarTodos());
         return "consulta/listar";
     }
 
-    @GetMapping("consulta/cadastrar")
+    @GetMapping("cadastrar")
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String cadastrar(Model model, Consulta consulta) {
         model.addAttribute("consulta", consulta);
         model.addAttribute("tiposConsulta", tipoConsultaService.buscarTodos());
@@ -43,7 +48,8 @@ public class ConsultaController {
         return "consulta/cadastrar";
     }
 
-    @GetMapping("consulta/{id}/editar")
+    @GetMapping("{id}/editar")
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String editar(Model model, @PathVariable Long id) {
         model.addAttribute("consulta", consultaService.buscarPorId(id));
         model.addAttribute("tiposConsulta", tipoConsultaService.buscarTodos());
@@ -52,27 +58,30 @@ public class ConsultaController {
         return "consulta/editar";
     }
 
-    @PostMapping("consulta")
+    @PostMapping
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String salvar(@Valid Consulta consulta, BindingResult result) {
         if(result.hasErrors()) {
             return "consulta/cadastrar";
         }
         consultaService.salvar(consulta);
-        return "redirect:/consulta";
+        return "redirect:/dashboard/consulta";
     }
 
-    @PostMapping("consulta/{id}/editar")
+    @PostMapping("{id}/editar")
+    @PreAuthorize("hasAnyRole('MEDICO', 'ATENDENTE')")
     public String atualizar(Model model, @PathVariable Long id, @Valid Consulta consulta, BindingResult result) {
         if(result.hasErrors()) {
             return "consulta/editar";
         }
         consultaService.atualizar(consulta);
-        return "redirect:/consulta";
+        return "redirect:/dashboard/consulta";
     }
 
-    @GetMapping("/consulta/{id}/deletar")
+    @GetMapping("{id}/deletar")
+    @PreAuthorize("hasRole('MEDICO')")
     public String deletar(@PathVariable Long id) {
         consultaService.deletar(id);
-        return "redirect:/consulta";
+        return "redirect:/dashboard/consulta";
     }
 }

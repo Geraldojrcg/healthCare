@@ -8,18 +8,6 @@
         <title>Cadastrar pessoas</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{/css/font-awesome-all.min.css}">
-
-        <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-        <script th:src="@{/js/popper.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-        <script th:src="@{/js/jquery.mask.min.js}"></script>
-        <script type="text/javascript">
-            $(function ($) {
-                $(".tel").mask("(99) 9.9999-9999");
-                $(".cpf").mask("999.999.999-99");
-                $(".cep").mask("99999-999");
-            });
-        </script>
     </head>
     <body>
         <div th:replace="fragments/header::header('pessoa')"></div>
@@ -125,8 +113,16 @@
             </div>
         </main>
         <div th:replace="fragments/footer::footer"></div>
+        <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/js/popper.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/jquery.mask.min.js}"></script>
         <script>
             $(function () {
+                $(".tel").mask("(99) 9.9999-9999");
+                $(".cpf").mask("999.999.999-99");
+                $(".cep").mask("99999-999");
+
                 $('#formPessoa').submit(function () {
                     $('#cpf').unmask();
                     $('#cep').unmask();

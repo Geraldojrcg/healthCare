@@ -20,7 +20,7 @@
                         <div class="card text-center bg-primary" style="width: 18rem; color: white">
                             <div class="card-body">
                                 <h5 class="card-title">Pacientes cadastrados</h5>
-                                <h3 class="card-text">999</h3>
+                                <h3 class="card-text" th:text="${pacientesCadastrados}"></h3>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="card text-center bg-secondary" style="width: 18rem; color: white">
                             <div class="card-body">
                                 <h5 class="card-title">Consultas marcadas</h5>
-                                <h3 class="card-text">155</h3>
+                                <h3 class="card-text" th:text="${consultasMarcadas}"></h3>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         <div class="card text-center bg-success" style="width: 18rem; color: white">
                             <div class="card-body">
                                 <h5 class="card-title">Consultas realizadas hoje</h5>
-                                <h3 class="card-text">50</h3>
+                                <h3 class="card-text" th:text="${realizadasHoje}"></h3>
                             </div>
                         </div>
                     </div>

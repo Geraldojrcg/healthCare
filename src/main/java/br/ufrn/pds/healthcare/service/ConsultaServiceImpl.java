@@ -47,6 +47,16 @@ public class ConsultaServiceImpl implements ConsultaService {
     }
 
     @Override
+    public List<Consulta> buscarMarcadas() {
+        return consultaRepository.findByStatus(ConsultaStatus.MARCADA);
+    }
+
+    @Override
+    public List<Consulta> buscarRealizadasHoje() {
+        return consultaRepository.findByStatusAndHorario(ConsultaStatus.ATENDIDA, LocalDateTime.now());
+    }
+
+    @Override
     public void atualizarStatusConsultasAtrasadas() {
         consultaRepository.atualizarStatusConsultasAtrasadas(LocalDateTime.now());
     }

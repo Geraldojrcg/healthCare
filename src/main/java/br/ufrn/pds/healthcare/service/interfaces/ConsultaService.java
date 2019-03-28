@@ -15,5 +15,9 @@ public interface ConsultaService {
 
     List<Consulta> buscarTodos();
 
+    List<Consulta> buscarMarcadas();
+
+    List<Consulta> buscarRealizadasHoje();
+
     void atualizarStatusConsultasAtrasadas();
 }

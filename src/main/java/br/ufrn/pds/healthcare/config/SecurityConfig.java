@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/registrar").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/dashboard", false);
+                .and().formLogin().defaultSuccessUrl("/dashboard", true);
     }
 
     @Override

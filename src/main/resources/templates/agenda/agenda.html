@@ -29,10 +29,33 @@
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
-
+		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
         <script type="text/javascript">
-
-            // Client ID and API key from the Developer Console
+        	var events = [];
+			configurarAgenda();
+			
+        	function configurarAgenda() {
+	        	var url =  '/api/consulta/getMarcadas';
+	        	consultarAgenda(url);
+	        	
+				var dados = localStorage.getItem(url);
+				dados = JSON.parse(dados);
+				dados.forEach(function(consulta) {
+					events.push({title: consulta.tipo.descricao, start: consulta.horario})
+				});
+			}
+			
+			function consultarAgenda(url) {
+				$.ajax({
+					url,
+					success: function(response) {
+						localStorage.setItem(url, JSON.stringify(response));
+					}
+				});
+			}
+			
+			
+            // Client ID and /API key from the Developer Console
             var CLIENT_ID = '80966816365-i4769foo48kg17ttqs1c0vrvq2mf0ns1.apps.googleusercontent.com';
             var API_KEY = 'AIzaSyBqz97lTg4TT_SPTD47o_wHBW51XyKQwVk';
 
@@ -42,23 +65,6 @@
                 allDay: ""
             };
             
-            let events = [
-                {
-                  title  : 'event1',
-                  start  : '2019-01-01'
-                },
-                {
-                  title  : 'event2',
-                  start  : '2019-01-05',
-                  end    : '2019-01-07'
-                },
-                {
-                  title  : 'event3',
-                  start  : '2019-01-09T12:30:00',
-                  allDay : false // will make the time show
-                }
-             ];
-
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
 

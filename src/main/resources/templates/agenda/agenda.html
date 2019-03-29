@@ -9,16 +9,6 @@
         
         <link th:href="@{/fullcalendar/packages/core/main.css}" rel='stylesheet' />
         <link th:href="@{/fullcalendar/packages/daygrid/main.css}" rel='stylesheet' />
-
-        <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
-        <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
-        <script th:src='@{/fullcalendar/packages/core/locales/pt-br.js}'></script>
-        <script th:src='@{/fullcalendar/packages/google-calendar/main.js}'></script>
-        <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
-
     </head>
     <body>
         <div th:replace="fragments/header::header('agenda')"></div>
@@ -30,6 +20,15 @@
             </div>
             <div class="col-sm-2"></div>
         </div>
+
+        <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
+        <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
+        <script th:src='@{/fullcalendar/packages/core/locales/pt-br.js}'></script>
+        <script th:src='@{/fullcalendar/packages/google-calendar/main.js}'></script>
+        <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
 
         <script type="text/javascript">
 

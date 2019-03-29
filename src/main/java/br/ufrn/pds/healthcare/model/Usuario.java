@@ -1,5 +1,7 @@
 package br.ufrn.pds.healthcare.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -14,9 +16,11 @@ public class Usuario extends EntidadeAbstrata {
     @Column(unique = true)
     private String email;
 
+    @JsonIgnore
     @NotEmpty(message = "O campo senha é obrigatório")
     private String senha;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "usuario")
     private Pessoa pessoa;
 

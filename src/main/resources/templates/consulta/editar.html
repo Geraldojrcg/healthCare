@@ -15,7 +15,7 @@
                 <div class="modal show bd-example-modal-xl" style="position: relative; display: block; z-index: 0">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
-                            <form th:object="${consulta}" th:action="@{/consulta/{id}/editar(id = ${consulta.id})}" method="POST">
+                            <form th:object="${consulta}" th:action="@{/dashboard/consulta/{id}/editar(id = ${consulta.id})}" method="POST">
                                 <div class="modal-header">
                                     <h3 style="text-align: center"><i class="fas fa-edit"></i>  Editar consulta</h3>
                                 </div>

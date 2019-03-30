@@ -31,30 +31,6 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
 		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
         <script type="text/javascript">
-        	var events = [];
-			configurarAgenda();
-			
-        	function configurarAgenda() {
-	        	var url =  '/api/consulta/getMarcadas';
-	        	consultarAgenda(url);
-	        	
-				var dados = localStorage.getItem(url);
-				dados = JSON.parse(dados);
-				dados.forEach(function(consulta) {
-					events.push({title: consulta.tipo.descricao, start: consulta.horario})
-				});
-			}
-			
-			function consultarAgenda(url) {
-				$.ajax({
-					url,
-					success: function(response) {
-						localStorage.setItem(url, JSON.stringify(response));
-					}
-				});
-			}
-			
-			
             // Client ID and /API key from the Developer Console
             var CLIENT_ID = '80966816365-i4769foo48kg17ttqs1c0vrvq2mf0ns1.apps.googleusercontent.com';
             var API_KEY = 'AIzaSyBqz97lTg4TT_SPTD47o_wHBW51XyKQwVk';
@@ -70,7 +46,6 @@
 
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     plugins: [ 'dayGrid', 'googleCalendar', 'interaction'],
-                    events: events,
                     locale: "pt-br",
                     height: 650,
                     // googleCalendarApiKey: API_KEY,
@@ -89,7 +64,16 @@
                         }
                     }
                 });
-
+                
+                $.ajax({
+                	url: '/api/consulta/getMarcadas',
+                	success: function(response) {
+                		response.forEach(function (consulta) {
+	                		calendar.addEvent({title: consulta.tipo.descricao, start: consulta.horario});
+                		});
+                	}
+                });
+                
                 calendar.render();
             });
         </script>

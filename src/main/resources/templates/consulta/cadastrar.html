@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="tipoConsulta">Tipo consulta</label>
-                                        <select th:field="*{tipo}" class="form-control" id="tipoConsulta">
+                                        <select th:field="*{tipo}" class="form-control" id="tipoConsulta" required>
                                             <option th:each="tipoConsulta : ${tiposConsulta}" th:value="${tipoConsulta.id}" th:text="${tipoConsulta.descricao}"></option>
                                         </select>
                                     </div>

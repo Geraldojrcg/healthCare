@@ -1,6 +1,7 @@
 package br.ufrn.pds.healthcare.controller;
 
 import br.ufrn.pds.healthcare.model.TipoConsulta;
+import br.ufrn.pds.healthcare.service.interfaces.GenericoService;
 import br.ufrn.pds.healthcare.service.interfaces.TipoConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,10 +19,12 @@ import javax.validation.Valid;
 @RequestMapping("dashboard/tipoConsulta")
 public class TipoConsultaController {
 
+    private final GenericoService genericoService;
     private final TipoConsultaService tipoConsultaService;
 
     @Autowired
-    public TipoConsultaController(TipoConsultaService tipoConsultaService) {
+    public TipoConsultaController(GenericoService genericoService, TipoConsultaService tipoConsultaService) {
+        this.genericoService = genericoService;
         this.tipoConsultaService = tipoConsultaService;
     }
 

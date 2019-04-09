@@ -1,0 +1,82 @@
+<head>
+<meta charset="utf-8">
+<title>Clínica da Saúde do RN</title>
+<meta http-equiv="content-language" content="pt-br"> 
+
+<link rel="shortcut icon" href="http://clinicadasaudern.com.br/site/images/favicon.gif">
+<link type="text/css" rel="stylesheet" href="http://clinicadasaudern.com.br/site/css/estilo.css">
+
+<script src="http://clinicadasaudern.com.br/site/js/mascaraUniversal.js"></script>
+
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://clinicadasaudern.com.br/site/js/fancybox/lib/jquery-1.10.1.min.js"></script>
+
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="http://clinicadasaudern.com.br/site/js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox main JS and CSS files -->
+<script type="text/javascript" src="http://clinicadasaudern.com.br/site/js/fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="http://clinicadasaudern.com.br/site/js/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen">
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.fancybox').fancybox();
+    });
+</script>
+
+</head>
+<body class="" style="margin-right: 0px;">
+<div id="geral">
+	<div id="cabecalho">
+    	<div class="centraliza">
+            <div id="logotipo">
+            <a href="http://clinicadasaudern.com.br/site">
+                <img src="http://clinicadasaudern.com.br/site/images/logotipo.png" alt="Logotipo" width="105" height="110">
+            </a>
+            </div>
+            <div id="menu">
+                <ul id="nav">
+                    <li><a href="http://clinicadasaudern.com.br/site/">Página inicial</a></li>
+                    <li><a href="http://clinicadasaudern.com.br/site/">Entrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<div id="conteudo">    <div id="slideshow">
+        <!-- Slide show do início -->
+        
+        <!-- bjqs.css contains the *essential* css needed for the slider to work -->
+        <!-- <link rel="stylesheet" href="http://clinicadasaudern.com.br/site/js/slideshow/bjqs.css"> -->
+        <!-- some pretty fonts for this demo page - not required for the slider -->
+        <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300" rel="stylesheet" type="text/css"> 
+        <!-- demo.css contains additional styles used to set up this demo page - not required for the slider --> 
+        <!-- <link rel="stylesheet" href="http://clinicadasaudern.com.br/site/js/slideshow/demo.css"> -->
+        <!-- load jQuery and the plugin
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> -->
+        <script src="http://clinicadasaudern.com.br/site/js/slideshow/bjqs-1.3.min.js"></script>
+        <!--  Outer wrapper for presentation only, this can be anything you like -->
+        
+        <div id="banner-slide" style="height: 460px; width: 920px; position: relative;"><div class="bjqs-wrapper" style="width: 920px; height: 460px; overflow: hidden; position: relative;"><ul class="bjqs" style="height: 460px; width: 7360px; left: -3680px; display: block;">
+            <li class="bjqs-slide" style="height: 460px; width: 920px; float: left; position: relative; display: list-item;">
+                <img src="http://www.gestaodeatendimento.com.br/wp-content/uploads/2017/05/clinicas.jpg" alt="" title="" style="border: 15px solid #FFF;" width="890" height="450">
+            </li>
+    </div>
+
+<!-- attach the plug-in to the slider parent element and adjust the settings as required -->
+<script class="secret-source">
+  jQuery(document).ready(function($) {
+    
+    $('#banner-slide').bjqs({
+      animtype      : 'slide',
+      height        : 460,
+      width         : 920,
+      responsive    : false,
+      randomstart   : false,
+	  showcontrols	: false
+    });
+    
+  });
+</script>
+
+</body>

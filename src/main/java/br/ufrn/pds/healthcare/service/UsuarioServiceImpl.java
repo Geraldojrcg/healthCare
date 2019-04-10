@@ -16,11 +16,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final PessoaService pessoaService;
-
+    private final GenericoServiceImpl genericoService;
+    
     @Autowired
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, PessoaService pessoaService) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, PessoaService pessoaService, GenericoServiceImpl genericoService) {
         this.usuarioRepository = usuarioRepository;
         this.pessoaService = pessoaService;
+        this.genericoService = genericoService;
     }
 
     @Override
@@ -41,11 +43,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public void atualizar(Usuario usuario) {
+    	genericoService.throwRecursoNaoEncontradoException(usuario, usuarioRepository, "Usuário não encontrado.");
         usuarioRepository.save(usuario);
     }
 
     @Override
     public void deletar(Long id) {
+    	genericoService.throwRecursoNaoEncontradoException(id, usuarioRepository, "Usuário não encontrado.");
         usuarioRepository.deleteById(id);
     }
 

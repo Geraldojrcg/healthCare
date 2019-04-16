@@ -1,5 +1,7 @@
 package br.ufrn.pds.healthcare.service;
 
+import br.ufrn.pds.healthcare.exception.Erro500Exception;
+import br.ufrn.pds.healthcare.exception.RecursoNaoEncontradoException;
 import br.ufrn.pds.healthcare.model.Consulta;
 import br.ufrn.pds.healthcare.model.ConsultaStatus;
 import br.ufrn.pds.healthcare.repository.ConsultaRepository;
@@ -26,19 +28,31 @@ public class ConsultaServiceImpl implements ConsultaService {
     @Override
     public Consulta salvar(Consulta consulta) {
         consulta.setStatus(ConsultaStatus.MARCADA);
-        return consultaRepository.save(consulta);
+        try {
+        	return consultaRepository.save(consulta);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro salvar consulta");
+		}
     }
 
     @Override
     public void atualizar(Consulta consulta) {
         genericoService.throwRecursoNaoEncontradoException(consulta, consultaRepository, "Consulta não encontrada.");
-        consultaRepository.save(consulta);
+        try {
+        	consultaRepository.save(consulta);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao atualizar consulta");
+		}
     }
 
     @Override
     public void deletar(Long id) {
         genericoService.throwRecursoNaoEncontradoException(id, consultaRepository, "Consulta não encontrada.");
-        consultaRepository.deleteById(id);
+        try {
+        	consultaRepository.deleteById(id);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro remover consulta");
+		}
     }
 
     @Override
@@ -64,6 +78,10 @@ public class ConsultaServiceImpl implements ConsultaService {
 
     @Override
     public void atualizarStatusConsultasAtrasadas() {
-        consultaRepository.atualizarStatusConsultasAtrasadas(LocalDateTime.now());
+    	try {
+    		consultaRepository.atualizarStatusConsultasAtrasadas(LocalDateTime.now());
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro salvar consulta");
+		}
     }
 }

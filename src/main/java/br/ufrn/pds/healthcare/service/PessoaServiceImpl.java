@@ -1,5 +1,6 @@
 package br.ufrn.pds.healthcare.service;
 
+import br.ufrn.pds.healthcare.exception.Erro500Exception;
 import br.ufrn.pds.healthcare.model.Perfil;
 import br.ufrn.pds.healthcare.model.Pessoa;
 import br.ufrn.pds.healthcare.repository.PessoaRepository;
@@ -30,19 +31,31 @@ public class PessoaServiceImpl implements PessoaService {
         if(pessoa.getPerfil() == null) {
             pessoa.setPerfil(perfilService.buscarPorNome("PACIENTE"));
         }
-        return pessoaRepository.save(pessoa);
+        try {
+        	return pessoaRepository.save(pessoa);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao salvar pessoa");
+		}
     }
 
     @Override
     public void atualizar(Pessoa pessoa) {
         genericoService.throwRecursoNaoEncontradoException(pessoa, pessoaRepository, "Pessoa não encontrada.");
-        pessoaRepository.save(pessoa);
+        try {
+        	pessoaRepository.save(pessoa);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao atualizar pessoa");
+		}
     }
 
     @Override
     public void deletar(Long id) {
         genericoService.throwRecursoNaoEncontradoException(id, pessoaRepository, "Pessoa não encontrada.");
-        pessoaRepository.deleteById(id);
+        try {
+        	pessoaRepository.deleteById(id);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao remover pessoa");
+		}
     }
 
     @Override

@@ -1,5 +1,6 @@
 package br.ufrn.pds.healthcare.service;
 
+import br.ufrn.pds.healthcare.exception.Erro500Exception;
 import br.ufrn.pds.healthcare.model.Pessoa;
 import br.ufrn.pds.healthcare.model.Usuario;
 import br.ufrn.pds.healthcare.repository.UsuarioRepository;
@@ -27,12 +28,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario salvar(Usuario usuario) {
-        if(ehValido(usuario)) {
-            usuario.setPessoa(pessoaService.buscarPorCpf(usuario.getPessoa().getCpf()));
-            usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
-            return usuarioRepository.save(usuario);
-        }
-        return null;
+    	try {
+    		if(ehValido(usuario)) {
+    			usuario.setPessoa(pessoaService.buscarPorCpf(usuario.getPessoa().getCpf()));
+    			usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
+    			return usuarioRepository.save(usuario);
+    		}
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao salvar usuário");
+		}
+
+    	return null;
     }
 
     private boolean ehValido(Usuario usuario) {
@@ -44,13 +50,21 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void atualizar(Usuario usuario) {
     	genericoService.throwRecursoNaoEncontradoException(usuario, usuarioRepository, "Usuário não encontrado.");
-        usuarioRepository.save(usuario);
+        try {
+        	usuarioRepository.save(usuario);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao atualizar usuário");
+		}
     }
 
     @Override
     public void deletar(Long id) {
     	genericoService.throwRecursoNaoEncontradoException(id, usuarioRepository, "Usuário não encontrado.");
-        usuarioRepository.deleteById(id);
+        try {
+        	usuarioRepository.deleteById(id);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao deletar usuário");
+		}
     }
 
     @Override

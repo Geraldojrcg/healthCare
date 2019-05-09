@@ -1,5 +1,6 @@
 package br.ufrn.pds.healthcare.service;
 
+import br.ufrn.pds.healthcare.exception.Erro500Exception;
 import br.ufrn.pds.healthcare.model.TipoConsulta;
 import br.ufrn.pds.healthcare.repository.TipoConsultaRepository;
 import br.ufrn.pds.healthcare.service.interfaces.GenericoService;
@@ -23,19 +24,31 @@ public class TipoConsultaServiceImpl implements TipoConsultaService {
 
     @Override
     public TipoConsulta salvar(TipoConsulta tipoConsulta) {
-        return tipoConsultaRepository.save(tipoConsulta);
+        try {
+        	return tipoConsultaRepository.save(tipoConsulta);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao salvar tipo de consulta");
+		}
     }
 
     @Override
     public void atualizar(TipoConsulta tipoConsulta) {
         genericoService.throwRecursoNaoEncontradoException(tipoConsulta, tipoConsultaRepository, "O tipo de consulta não existe.");
-        tipoConsultaRepository.save(tipoConsulta);
+        try {
+        	tipoConsultaRepository.save(tipoConsulta);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao atualizar tipo de consulta");
+		}
     }
 
     @Override
     public void deletar(Long id) {
         genericoService.throwRecursoNaoEncontradoException(id, tipoConsultaRepository, "O tipo de consulta não existe.");
-        tipoConsultaRepository.deleteById(id);
+        try {
+        	tipoConsultaRepository.deleteById(id);
+        } catch (Exception e) {
+        	throw new Erro500Exception("Erro ao deletar tipo de consulta");
+		}
     }
 
     @Override

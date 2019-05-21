@@ -1,6 +1,6 @@
 package br.ufrn.pds.healthcare.service;
 
-import br.ufrn.pds.healthcare.exception.Erro500Exception;
+import br.ufrn.pds.healthcare.exception.BusinessException;
 import br.ufrn.pds.healthcare.model.TipoConsulta;
 import br.ufrn.pds.healthcare.repository.TipoConsultaRepository;
 import br.ufrn.pds.healthcare.service.interfaces.GenericoService;
@@ -27,7 +27,7 @@ public class TipoConsultaServiceImpl implements TipoConsultaService {
         try {
         	return tipoConsultaRepository.save(tipoConsulta);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao salvar tipo de consulta");
+        	throw new BusinessException("Erro ao salvar tipo de consulta.");
 		}
     }
 
@@ -37,7 +37,7 @@ public class TipoConsultaServiceImpl implements TipoConsultaService {
         try {
         	tipoConsultaRepository.save(tipoConsulta);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao atualizar tipo de consulta");
+        	throw new BusinessException("Erro ao atualizar tipo de consulta.");
 		}
     }
 
@@ -47,7 +47,7 @@ public class TipoConsultaServiceImpl implements TipoConsultaService {
         try {
         	tipoConsultaRepository.deleteById(id);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao deletar tipo de consulta");
+        	throw new BusinessException("Erro ao deletar tipo de consulta.");
 		}
     }
 

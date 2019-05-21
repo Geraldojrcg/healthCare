@@ -1,6 +1,6 @@
 package br.ufrn.pds.healthcare.controller;
 
-import br.ufrn.pds.healthcare.exception.Erro500Exception;
+import br.ufrn.pds.healthcare.exception.BusinessException;
 import br.ufrn.pds.healthcare.exception.RecursoNaoEncontradoException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,8 +12,8 @@ public class ExceptionController {
         return "erro/404";
     }
     
-    @ExceptionHandler(Erro500Exception.class)
-    public String handleErro500Exception(Erro500Exception rneException) {
+    @ExceptionHandler(BusinessException.class)
+    public String handleErro500Exception(BusinessException businessException) {
         return "erro/500";
     }
 }

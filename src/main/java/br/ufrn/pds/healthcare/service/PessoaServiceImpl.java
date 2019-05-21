@@ -1,6 +1,6 @@
 package br.ufrn.pds.healthcare.service;
 
-import br.ufrn.pds.healthcare.exception.Erro500Exception;
+import br.ufrn.pds.healthcare.exception.BusinessException;
 import br.ufrn.pds.healthcare.model.Perfil;
 import br.ufrn.pds.healthcare.model.Pessoa;
 import br.ufrn.pds.healthcare.repository.PessoaRepository;
@@ -34,7 +34,7 @@ public class PessoaServiceImpl implements PessoaService {
         try {
         	return pessoaRepository.save(pessoa);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao salvar pessoa");
+        	throw new BusinessException("Erro ao salvar pessoa.");
 		}
     }
 
@@ -44,7 +44,7 @@ public class PessoaServiceImpl implements PessoaService {
         try {
         	pessoaRepository.save(pessoa);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao atualizar pessoa");
+        	throw new BusinessException("Erro ao atualizar pessoa.");
 		}
     }
 
@@ -54,7 +54,7 @@ public class PessoaServiceImpl implements PessoaService {
         try {
         	pessoaRepository.deleteById(id);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao remover pessoa");
+        	throw new BusinessException("Erro ao remover pessoa");
 		}
     }
 

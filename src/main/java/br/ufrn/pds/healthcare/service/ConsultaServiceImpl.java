@@ -1,7 +1,6 @@
 package br.ufrn.pds.healthcare.service;
 
-import br.ufrn.pds.healthcare.exception.Erro500Exception;
-import br.ufrn.pds.healthcare.exception.RecursoNaoEncontradoException;
+import br.ufrn.pds.healthcare.exception.BusinessException;
 import br.ufrn.pds.healthcare.model.Consulta;
 import br.ufrn.pds.healthcare.model.ConsultaStatus;
 import br.ufrn.pds.healthcare.repository.ConsultaRepository;
@@ -31,7 +30,7 @@ public class ConsultaServiceImpl implements ConsultaService {
         try {
         	return consultaRepository.save(consulta);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro salvar consulta");
+        	throw new BusinessException("Erro ao salvar consulta.");
 		}
     }
 
@@ -41,7 +40,7 @@ public class ConsultaServiceImpl implements ConsultaService {
         try {
         	consultaRepository.save(consulta);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao atualizar consulta");
+        	throw new BusinessException("Erro ao atualizar consulta.");
 		}
     }
 
@@ -51,7 +50,7 @@ public class ConsultaServiceImpl implements ConsultaService {
         try {
         	consultaRepository.deleteById(id);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro remover consulta");
+        	throw new BusinessException("Erro ao remover consulta.");
 		}
     }
 
@@ -81,7 +80,7 @@ public class ConsultaServiceImpl implements ConsultaService {
     	try {
     		consultaRepository.atualizarStatusConsultasAtrasadas(LocalDateTime.now());
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro salvar consulta");
+        	throw new BusinessException("Erro ao salvar consulta.");
 		}
     }
 }

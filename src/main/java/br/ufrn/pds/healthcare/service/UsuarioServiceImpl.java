@@ -1,6 +1,6 @@
 package br.ufrn.pds.healthcare.service;
 
-import br.ufrn.pds.healthcare.exception.Erro500Exception;
+import br.ufrn.pds.healthcare.exception.BusinessException;
 import br.ufrn.pds.healthcare.model.Pessoa;
 import br.ufrn.pds.healthcare.model.Usuario;
 import br.ufrn.pds.healthcare.repository.UsuarioRepository;
@@ -35,7 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     			return usuarioRepository.save(usuario);
     		}
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao salvar usuário");
+        	throw new BusinessException("Erro ao salvar usuário.");
 		}
 
     	return null;
@@ -53,7 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         try {
         	usuarioRepository.save(usuario);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao atualizar usuário");
+        	throw new BusinessException("Erro ao atualizar usuário.");
 		}
     }
 
@@ -63,7 +63,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         try {
         	usuarioRepository.deleteById(id);
         } catch (Exception e) {
-        	throw new Erro500Exception("Erro ao deletar usuário");
+        	throw new BusinessException("Erro ao deletar usuário.");
 		}
     }
 
